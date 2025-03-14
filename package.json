@@ -4,9 +4,12 @@
   "description": "NFT Staking DApp on the Internet Computer",
   "scripts": {
     "start": "dfx start --background",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
     "deploy:local": "dfx deploy --network=local",
     "deploy:ic": "dfx deploy --network=ic",
-    "build": "dfx build",
+    "dfx:build": "dfx build",
     "test": "mo-test"
   },
   "dependencies": {
@@ -22,6 +25,9 @@
   "devDependencies": {
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
+    "@vitejs/plugin-react": "^4.0.0",
+    "autoprefixer": "^10.4.14",
+    "postcss": "^8.4.21",
     "typescript": "^5.0.2",
     "vite": "^4.3.9"
   }
