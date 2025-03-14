@@ -2,64 +2,199 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-    margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-        sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+@layer base {
+    body {
+        font-family: 'Inter', sans-serif;
+        @apply antialiased;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+        @apply bg-gray-800;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        @apply bg-gray-600 rounded-full;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        @apply bg-gray-500;
+    }
 }
 
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
+@layer components {
+    .btn {
+        @apply inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold transition-all duration-200 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900;
+    }
+
+    .btn-primary {
+        @apply bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow-lg hover:from-blue-600 hover:to-purple-600 focus:ring-blue-500;
+    }
+
+    .btn-secondary {
+        @apply bg-gray-700 text-white hover:bg-gray-600 focus:ring-gray-500;
+    }
+
+    .btn-danger {
+        @apply bg-red-500 text-white hover:bg-red-600 focus:ring-red-500;
+    }
+
+    .card {
+        @apply bg-gray-800/50 backdrop-blur-sm rounded-xl shadow-xl border border-gray-700/50 overflow-hidden transition-all duration-300 hover:border-gray-600/50;
+    }
+
+    .input {
+        @apply bg-gray-700 border border-gray-600 rounded-lg px-4 py-2 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200;
+    }
+
+    .badge {
+        @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+    }
+
+    .badge-success {
+        @apply bg-green-500/20 text-green-400;
+    }
+
+    .badge-warning {
+        @apply bg-yellow-500/20 text-yellow-400;
+    }
+
+    .badge-error {
+        @apply bg-red-500/20 text-red-400;
+    }
 }
 
-.btn {
-    @apply font-bold py-2 px-4 rounded;
+/* Animations */
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
 }
 
-.btn-primary {
-    @apply bg-blue-600 text-white;
+.animate-float {
+    animation: float 3s ease-in-out infinite;
 }
 
-.btn-primary:hover {
-    @apply bg-blue-700;
+/* Glass Effect */
+.glass {
+    @apply bg-white/10 backdrop-blur-lg border border-white/20;
 }
 
-.btn-secondary {
-    @apply bg-gray-600 text-white;
+/* Gradient Text */
+.gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500;
 }
 
-.btn-secondary:hover {
-    @apply bg-gray-700;
+/* Card Hover Effect */
+.card-hover {
+    @apply transition-all duration-300 transform hover:scale-105 hover:shadow-2xl;
 }
 
-.card {
-    @apply bg-gray-800 rounded-lg p-6;
+/* Loading Animation */
+.loading-spinner {
+    @apply w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full animate-spin;
 }
 
-.card-header {
-    @apply text-2xl font-bold mb-4;
+/* Custom Grid Layout */
+.auto-grid {
+    @apply grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 }
 
-.grid-container {
-    @apply grid grid-cols-1 md:grid-cols-2 gap-8;
+/* Glassmorphism Cards */
+.glass-card {
+    @apply relative overflow-hidden rounded-2xl;
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.1),
+        rgba(255, 255, 255, 0.05)
+    );
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.nft-card {
-    @apply bg-gray-700 p-4 rounded-lg;
+/* Animated Background */
+.animated-bg {
+    background: linear-gradient(-45deg, #1a1a1a, #2d3748, #1a365d, #2d3748);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
 }
 
-.nft-title {
-    @apply font-bold;
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
-.nft-metadata {
-    @apply text-sm text-gray-300;
+/* Notification Animation */
+.notification-enter {
+    transform: translateX(100%);
+    opacity: 0;
 }
 
-.rewards {
-    @apply text-sm text-green-400;
+.notification-enter-active {
+    transform: translateX(0);
+    opacity: 1;
+    transition: all 300ms ease-out;
+}
+
+.notification-exit {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+.notification-exit-active {
+    transform: translateX(100%);
+    opacity: 0;
+    transition: all 300ms ease-in;
+}
+
+/* Stats Card */
+.stats-card {
+    @apply relative overflow-hidden rounded-xl p-6;
+    background: linear-gradient(
+        135deg,
+        rgba(59, 130, 246, 0.1),
+        rgba(139, 92, 246, 0.1)
+    );
+}
+
+.stats-card::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10 opacity-0 transition-opacity duration-300;
+}
+
+.stats-card:hover::before {
+    @apply opacity-100;
+}
+
+/* NFT Card Shine Effect */
+.nft-card::after {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent opacity-0 transition-opacity duration-300;
+    transform: translateX(-100%);
+}
+
+.nft-card:hover::after {
+    @apply opacity-100;
+    transform: translateX(100%);
+    transition: transform 0.6s ease-in-out;
 }
