@@ -1,0 +1,23 @@
+{
+  "canisters": {
+    "nft_staking_backend": {
+      "main": "src/backend/main.mo",
+      "type": "motoko"
+    },
+    "nft_staking_frontend": {
+      "dependencies": ["nft_staking_backend"],
+      "frontend": {
+        "entrypoint": "src/frontend/public/index.html"
+      },
+      "source": ["src/frontend/public"],
+      "type": "assets"
+    }
+  },
+  "defaults": {
+    "build": {
+      "args": "",
+      "packtool": ""
+    }
+  },
+  "version": 1
+}
